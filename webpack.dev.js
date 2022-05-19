@@ -4,6 +4,10 @@ const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
 	mode: 'development',
+	output: {
+		filename: '[name].js',
+		pathinfo: false,
+	},
 	devtool: 'inline-source-map',
 	devServer: {
 		static: {
@@ -20,5 +24,11 @@ module.exports = merge(common, {
 		compress: true,
 		historyApiFallback: true,
 		watchFiles: ['public/**/*'],
+	},
+	optimization: {
+		removeAvailableModules: false,
+		removeEmptyChunks: false,
+		splitChunks: false,
+		runtimeChunk: true,
 	},
 });
