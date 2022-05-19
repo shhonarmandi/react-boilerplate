@@ -15,5 +15,9 @@
 	"bugs": {
 		"url": "https://github.com/shhonarmandi/react-boilerplate/issues"
 	},
-	"homepage": "https://github.com/shhonarmandi/react-boilerplate#readme"
+	"homepage": "https://github.com/shhonarmandi/react-boilerplate#readme",
+	"dependencies": {
+		"react": "^18.1.0",
+		"react-dom": "^18.1.0"
+	}
 }
