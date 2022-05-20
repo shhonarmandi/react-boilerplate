@@ -1,6 +1,7 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(common, {
 	mode: 'development',
@@ -8,7 +9,7 @@ module.exports = merge(common, {
 		filename: '[name].js',
 		pathinfo: false,
 	},
-	devtool: 'inline-source-map',
+	devtool: 'eval-source-map',
 	devServer: {
 		static: {
 			directory: path.join(__dirname, 'dist'),
@@ -26,9 +27,15 @@ module.exports = merge(common, {
 		watchFiles: ['public/**/*'],
 	},
 	optimization: {
-		removeAvailableModules: false,
-		removeEmptyChunks: false,
-		splitChunks: false,
 		runtimeChunk: true,
+		splitChunks: false,
+		removeEmptyChunks: false,
+		removeAvailableModules: false,
 	},
+	plugins: [
+		new MiniCssExtractPlugin({
+			filename: '[name].css',
+			chunkFilename: '[id].css',
+		}),
+	],
 });

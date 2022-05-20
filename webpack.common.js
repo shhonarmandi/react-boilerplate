@@ -1,6 +1,9 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 module.exports = {
 	entry: {
@@ -8,16 +11,54 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: '[name].[contenthash].js',
 		clean: true,
 	},
 	module: {
 		rules: [
 			{
-				test: /\.m?js$/,
+				test: /\.js[x]?$/i,
 				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader',
+				},
+			},
+			{
+				test: /\.s[ac]ss$/i,
+				use: [
+					isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options: {
+							importLoaders: 1,
+							modules: {
+								auto: true,
+								hashStrategy: 'minimal-subset',
+								localIdentName: isDevelopment ? '[local]' : '[hash:base64]',
+							},
+						},
+					},
+					'postcss-loader',
+					'sass-loader',
+					{
+						loader: 'sass-loader',
+						options: {
+							implementation: require('sass'),
+						},
+					},
+				],
+			},
+			{
+				test: /\.(png|svg|jpg|jpeg|gif)$/i,
+				type: 'asset/resource',
+				generator: {
+					filename: 'assets/images/[hash][ext]',
+				},
+			},
+			{
+				test: /\.(woff|woff2|eot|ttf|otf)$/i,
+				type: 'asset/resource',
+				generator: {
+					filename: 'assets/fonts/[hash][ext]',
 				},
 			},
 		],
