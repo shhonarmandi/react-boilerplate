@@ -4,9 +4,12 @@
 	"description": "React boilerplate",
 	"private": true,
 	"scripts": {
-		"start": "webpack serve --open --config webpack.dev.js",
-		"build": "webpack --config webpack.prod.js",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"start": "cross-env NODE_ENV=development webpack serve --open --config webpack.dev.js",
+		"build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
+		"format": "npx prettier --ignore-path .gitignore --write .",
+		"generateBundleStats": "webpack --profile --json > bundleStats.json & webpack-bundle-analyzer ./bundleStats.json",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"prepare": "husky install"
 	},
 	"repository": {
 		"type": "git",
@@ -26,10 +29,23 @@
 		"@babel/core": "^7.17.12",
 		"@babel/preset-env": "^7.17.12",
 		"@babel/preset-react": "^7.17.12",
+		"autoprefixer": "^10.4.7",
 		"babel-loader": "^8.2.5",
 		"copy-webpack-plugin": "^11.0.0",
+		"cross-env": "^7.0.3",
+		"css-loader": "^6.7.1",
 		"html-webpack-plugin": "^5.5.0",
+		"husky": "^8.0.1",
+		"mini-css-extract-plugin": "^2.6.0",
+		"postcss": "^8.4.14",
+		"postcss-loader": "^7.0.0",
+		"postcss-nested": "^5.0.6",
+		"prettier": "2.6.2",
+		"sass": "^1.52.0",
+		"sass-loader": "^13.0.0",
+		"style-loader": "^3.3.1",
 		"webpack": "^5.72.1",
+		"webpack-bundle-analyzer": "^4.5.0",
 		"webpack-cli": "^4.9.2",
 		"webpack-dev-server": "^4.9.0"
 	}
