@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import logo from './assets/images/logo.svg';
-import styles from './_app.module.scss';
+import logo from './assets/images/logo.svg'
+import styles from './_app.module.scss'
 
 function App() {
 	return (
@@ -11,12 +11,17 @@ function App() {
 				<p>
 					Edit <code>src/App.js</code> and save to reload.
 				</p>
-				<a className={styles.container__link} href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
+				<a
+					className={styles.container__link}
+					href="https://reactjs.org"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
 					Learn React
 				</a>
 			</header>
 		</div>
-	);
+	)
 }
 
-export default App;
+export default App

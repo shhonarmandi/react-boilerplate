@@ -6,6 +6,7 @@
 	"scripts": {
 		"start": "cross-env NODE_ENV=development webpack serve --open --config webpack.dev.js",
 		"build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
+		"format": "npx prettier --ignore-path ./.gitignore --write .",
 		"generateBundleStats": "webpack --profile --json > bundleStats.json & webpack-bundle-analyzer ./bundleStats.json",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
@@ -37,6 +38,7 @@
 		"postcss": "^8.4.14",
 		"postcss-loader": "^7.0.0",
 		"postcss-nested": "^5.0.6",
+		"prettier": "2.6.2",
 		"sass": "^1.52.0",
 		"sass-loader": "^13.0.0",
 		"style-loader": "^3.3.1",
