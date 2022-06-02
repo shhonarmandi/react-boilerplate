@@ -8,8 +8,14 @@ module.exports = merge(common, {
 		filename: '[name].[contenthash].js',
 	},
 	optimization: {
-		moduleIds: 'deterministic',
-		runtimeChunk: 'single',
+		chunkIds: 'size',
+		moduleIds: 'size',
+		mangleExports: 'size',
+		mangleWasmImports: true,
+		removeAvailableModules: false,
+		runtimeChunk: {
+			name: (entrypoint) => `runtime~${entrypoint.name}`,
+		},
 		splitChunks: {
 			cacheGroups: {
 				vendor: {
