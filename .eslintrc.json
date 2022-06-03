@@ -7,23 +7,25 @@
 	"extends": [
 		"eslint:recommended",
 		"plugin:react/recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:@typescript-eslint/recommended-requiring-type-checking",
 		"plugin:jsx-a11y/strict",
-		"prettier"
+		"plugin:prettier/recommended"
 	],
-	"parser": "@babel/eslint-parser",
+	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true
 		},
 		"ecmaVersion": "latest",
 		"sourceType": "module",
-		"babelOptions": {
-			"configFile": "./babel.config.json"
-		}
+		"project": "./tsconfig.json"
 	},
-	"plugins": ["react", "jsx-a11y"],
+	"plugins": ["react", "@typescript-eslint", "jsx-a11y"],
 	"rules": {
-		"strict": ["error", "never"]
+		"strict": ["error", "never"],
+		"react/jsx-uses-react": "off",
+		"react/react-in-jsx-scope": "off"
 	},
 	"settings": {
 		"react": {

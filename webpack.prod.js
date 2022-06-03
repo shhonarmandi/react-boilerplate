@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const {merge} = require('webpack-merge')
 const common = require('./webpack.common.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -14,7 +16,7 @@ module.exports = merge(common, {
 		mangleWasmImports: true,
 		removeAvailableModules: false,
 		runtimeChunk: {
-			name: (entrypoint) => `runtime~${entrypoint.name}`,
+			name: 'runtime',
 		},
 		splitChunks: {
 			cacheGroups: {

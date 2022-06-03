@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -7,7 +9,7 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 
 module.exports = {
 	entry: {
-		app: path.resolve(__dirname, 'src/index.js'),
+		app: path.resolve(__dirname, 'src/index.tsx'),
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
@@ -16,7 +18,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.js$/i,
+				test: /\.(jsx?|tsx?)$/i,
 				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader',
@@ -62,6 +64,9 @@ module.exports = {
 				},
 			},
 		],
+	},
+	resolve: {
+		extensions: ['.js', 'jsx', '.ts', '.tsx'],
 	},
 	plugins: [
 		new CopyPlugin({
