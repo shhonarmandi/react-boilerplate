@@ -7,7 +7,7 @@
 	"extends": [
 		"eslint:recommended",
 		"plugin:react/recommended",
-		"plugin:jsx-a11y/recommended",
+		"plugin:jsx-a11y/strict",
 		"prettier"
 	],
 	"parser": "@babel/eslint-parser",
