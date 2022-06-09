@@ -5,12 +5,13 @@
 	"private": true,
 	"scripts": {
 		"start": "cross-env NODE_ENV=development webpack serve --open --config webpack.dev.js",
+		"build:validate": "npm-run-all --parallel check-format lint build",
+		"build": "npm-run-all check-types build:bundles",
 		"format": "prettier --ignore-path .gitignore --write .",
-		"validate": "npm-run-all --parallel check-types check-format lint build",
 		"check-types": "tsc",
 		"lint": "eslint --ignore-path .gitignore .",
 		"check-format": "prettier --ignore-path .gitignore --check .",
-		"build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
+		"build:bundles": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"prepare": "husky install"
 	},
